@@ -16,7 +16,7 @@ var content = fs.readFileSync("public/text/collection_provinces.json");
 var lecturejson = require("C:/veille_finale/ef2/public/text/collection_provinces.json");
 
 
-MongoClient.connect('mongodb://127.0.0.1:27017/examf2', (err, database) => {
+MongoClient.connect('mongodb://127.0.0.1:27017/test', (err, database) => {
   if (err) return console.log(err)
   db = database
 
@@ -40,14 +40,19 @@ app.get('/question2', (req, res) => {
 
 app.get('/question3', (req, res) => {
 
-	var cursor = db.collection('examf2').find().toArray(function(err, resultat){
-       if (err) return console.log(err)
-    // renders index.ejs
+	db.collection('examf2').find().toArray(function(err, resultat){
+       if (err){  console.log(err)
+        return
+
+       }
+
+       console.log("relsultat2 = " + resultat)
+
     // affiche le contenu de la BD
     res.render('index.ejs', {examf2: resultat})
 
-    console.log("relsultat = " + resultat)
-    console.log("cursor = " + cursor)
+    console.log("relsultat1 = " + resultat)
+    //console.log("cursor = " + cursor)
 
     }) 
 
