@@ -12,26 +12,23 @@
   	  	<h2>Node.js, Express, MongoDB, EJS</h2>
   	  	<nav>
 
-  	  		<a <%= "href=question1/"%>>1-Fichier</a>
-  	  		<a href="#">2-Provinces</a>
-  	  		<a href="#">3-Collection</a>
-  	  		<a href="#">4-Ajouter un document</a>
-  	  		<a href="#">5-Détruire</a>
-  	  		<a href="#">6-Ajouter plusieurs</a>
+          <a <%= "href=question1/"%>>1-Fichier</a>
+          <a <%= "href=question2/"%>>2-Provinces</a>
+          <a href="#">3-Collection</a>
+          <a href="#">4-Ajouter un document</a>
+          <a href="#">5-Détruire</a>
+          <a href="#">6-Ajouter plusieurs</a>
   	  	<nav>
   	  </header>
   	  <main>
 		  <table class="tableau">
-      <% for(var i=0; i<examf2.length; i++) {%>
-        <li class="client">
-          <form <%= "action=modifier/"+examf2[i]._id.toString() %> method="POST">
-            <input type="text" placeholder="Code" name="code" value="<%= examf2[i].code %>">
-            <input type="text" placeholder="Nom" name="nom" value="<%= examf2[i].nom %>">
-            <input type="text" placeholder="Capital" name="capital" value="<%= examf2[i].captial %>">
-            <%= examf2[i]._id.toString() %>
-          </form>
-        </li>
-      <% } %>
+        <% for (var i = 0; i < examf2.length; i++) { %>
+          <tr>
+            <td><%= examf2[i].code %></td>
+            <td><%= examf2[i].nom %></td>
+            <td><%= examf2[i].capital %></td>
+          </tr>    
+        <% } %>
 		  </table>
 	  </main>
 	  <footer>
