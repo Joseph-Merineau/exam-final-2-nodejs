@@ -44,6 +44,18 @@ app.get('/question2', (req, res) => {
 
 })
 
+app.get('/question3', (req, res) => {
+
+	var resultat = db.collection('examf2').find().toArray(function(err, resultat){
+       if (err) return console.log(err)
+    // renders index.ejs
+    // affiche le contenu de la BD
+    res.render('index.ejs', {examf2: resultat})
+
+    }) 
+
+})
+
 app.get('/',  (req, res) => {
    console.log('la route route get / = ' + req.url)
  
