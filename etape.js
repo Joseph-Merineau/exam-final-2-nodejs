@@ -39,8 +39,6 @@ app.get('/question1', (req, res, next) => {
 
 app.get('/question2', (req, res) => {
 
-	console.log("J'suis juste tanné...")
-
 	var data = fs.readFileSync(__dirname + "/public/text/collection_provinces.json", "utf8")
 	res.render('index.ejs', {examf2 : JSON.parse(data)});
 
