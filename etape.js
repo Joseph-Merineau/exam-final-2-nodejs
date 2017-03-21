@@ -15,13 +15,20 @@ var content = fs.readFileSync("public/text/collection_provinces.json");
 
 var lecturejson = require("C:/veille_finale/ef2/public/text/collection_provinces.json");
 
+
 MongoClient.connect('mongodb://127.0.0.1:27017/examf2', (err, database) => {
   if (err) return console.log(err)
   db = database
+
+
+
+
   app.listen(8081, () => {
     console.log('ÇA FONCTIONNE!? Connexion à la BD et on écoute sur le port 8081')
   })
 })
+
+
 
 
 app.get('/question1', (req, res, next) => {
@@ -30,39 +37,12 @@ app.get('/question1', (req, res, next) => {
 
 })
 
-app.get('/question2', function (req, res) {
+app.get('/question2', (req, res) => {
 
 	console.log("J'suis juste tanné...")
 
-	/*var cursor = db.collection('examf2').find().toArray(function(err, resultat){
-       if (err) return console.log(err)
-    // renders index.ejs
-    // affiche le contenu de la BD
-    res.render('index.ejs', {examf2: resultat})
-
-    }) */
-
-
 	var data = fs.readFileSync(__dirname + "/public/text/collection_provinces.json", "utf8")
-	res.render('index.ejs', {provinces : JSON.parse(data)});
-
-
-   /* xhr = new XMLHttpRequest();
-xhr.open('POST', "modifier", true);
-data = { 
- "modif":{
- "code" : elmLigneDiv[0].innerHTML,
- "nom" : elmLigneDiv[1].innerHTML,
- "capital" : elmLigneDiv[2].innerHTML
- },
- "_id" : elmLigneDiv[3].innerHTML 
- }
-
-sData = JSON.stringify(data);
-xhr.setRequestHeader('Content-type', 'application/json');
-xhr.send(sData);
-xhr.addEventListener("readystatechange", traiterRequest, false);*/
-    
+	res.render('index.ejs', {examf2 : JSON.parse(data)});
 
 })
 
