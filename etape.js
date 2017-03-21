@@ -20,16 +20,10 @@ MongoClient.connect('mongodb://127.0.0.1:27017/examf2', (err, database) => {
   if (err) return console.log(err)
   db = database
 
-
-
-
   app.listen(8081, () => {
     console.log('ÇA FONCTIONNE!? Connexion à la BD et on écoute sur le port 8081')
   })
 })
-
-
-
 
 app.get('/question1', (req, res, next) => {
 
@@ -46,7 +40,7 @@ app.get('/question2', (req, res) => {
 
 app.get('/question3', (req, res) => {
 
-	var resultat = db.collection('examf2').find().toArray(function(err, resultat){
+	var cursor = db.collection('examf2').find().toArray(function(err, resultat){
        if (err) return console.log(err)
     // renders index.ejs
     // affiche le contenu de la BD
@@ -55,6 +49,18 @@ app.get('/question3', (req, res) => {
     }) 
 
 })
+
+
+app.post('/examf2',  (req, res) => {
+  db.collection('examf2').save(req.body, (err, result) => {
+      if (err) return console.log(err)
+      console.log('sauvegarder dans la BD')
+      res.redirect('/')
+    })
+})
+
+
+//---------------------------------------
 
 app.get('/',  (req, res) => {
    console.log('la route route get / = ' + req.url)
@@ -75,13 +81,7 @@ app.get('/formulaire',  (req, res) => {
 })
 
 
-app.post('/examf2',  (req, res) => {
-  db.collection('examf2').save(req.body, (err, result) => {
-      if (err) return console.log(err)
-      console.log('sauvegarder dans la BD')
-      res.redirect('/')
-    })
-})
+
 
 
 app.get('/detruire/:id', (req, res) => {
