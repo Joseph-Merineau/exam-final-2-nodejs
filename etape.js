@@ -11,12 +11,22 @@ app.use(bodyParser.json())  // pour traiter les données JSON
 
 var db // variable qui contiendra le lien sur la BD
 
+var content = fs.readFileSync("public/text/collection_provinces.json");
+
 MongoClient.connect('mongodb://127.0.0.1:27017/examf2', (err, database) => {
   if (err) return console.log(err)
   db = database
   app.listen(8081, () => {
     console.log('Connexion à la BD et on écoute sur le port 8081')
   })
+})
+
+
+app.get('/question1', (req, res) => {
+console.log('POURQUOI CRISS')
+ 
+
+
 })
 
 app.get('/',  (req, res) => {
@@ -70,3 +80,22 @@ if (err) return console.log(err)
  res.redirect('/')  // redirige vers la route qui affiche la collection
  })
 })
+
+
+/*function readTextFile(file, callback) {
+    var rawFile = new XMLHttpRequest();
+    rawFile.overrideMimeType("application/json");
+    rawFile.open("GET", file, true);
+    rawFile.onreadystatechange = function() {
+        if (rawFile.readyState === 4 && rawFile.status == "200") {
+            callback(rawFile.responseText);
+        }
+    }
+    rawFile.send(null);
+}
+
+//usage:
+readTextFile("public/text/collection_provinces.json", function(text){
+    var data = JSON.parse(text);
+    console.log(data);
+});*/

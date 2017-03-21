@@ -12,7 +12,7 @@
   	  	<h2>Node.js, Express, MongoDB, EJS</h2>
   	  	<nav>
 
-  	  		<a href="#">1-Fichier</a>
+  	  		<a <%= "href=question1/"%>>1-Fichier</a>
   	  		<a href="#">2-Provinces</a>
   	  		<a href="#">3-Collection</a>
   	  		<a href="#">4-Ajouter un document</a>
@@ -29,8 +29,6 @@
             <input type="text" placeholder="Nom" name="nom" value="<%= examf2[i].nom %>">
             <input type="text" placeholder="Capital" name="capital" value="<%= examf2[i].captial %>">
             <%= examf2[i]._id.toString() %>
-            <a <%= "href=detruire/"+examf2[i]._id.toString() %>>Supprimer</a>
-            <button type="submit">Sauvegarder</button>
           </form>
         </li>
       <% } %>
