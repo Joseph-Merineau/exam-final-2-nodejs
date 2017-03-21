@@ -13,6 +13,8 @@ var db // variable qui contiendra le lien sur la BD
 
 var content = fs.readFileSync("public/text/collection_provinces.json");
 
+var foo = require("C:/veille_finale/ef2/public/text/collection_provinces.json");
+
 MongoClient.connect('mongodb://127.0.0.1:27017/examf2', (err, database) => {
   if (err) return console.log(err)
   db = database
@@ -22,10 +24,25 @@ MongoClient.connect('mongodb://127.0.0.1:27017/examf2', (err, database) => {
 })
 
 
-app.get('/question1', (req, res) => {
-console.log('POURQUOI CRISS')
+app.get('/question1', (req, res, next) => {
+	/*-fs.readFile(filename, function (err, data) {
+	    if(err) {
+	      callback(err);
+	      return;
+	    }
+	    try {
+	      callback(null, JSON.parse(data));
+	    } catch(exception) {
+	      callback(exception);
+	    }
+	});
  
 
+ readJSONFile('public/text/collection_provinces.json', function (err, json) {
+	  if(err) { throw err; }
+	  console.log(json);
+	});*/
+res.send(foo);
 
 })
 
