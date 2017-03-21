@@ -22,8 +22,18 @@
   	  </header>
   	  <main>
 		  <table class="tableau">
-      <!--Boucle for -->
-        ----------------------------------------
+      <% for(var i=0; i<examf2.length; i++) {%>
+        <li class="client">
+          <form <%= "action=modifier/"+examf2[i]._id.toString() %> method="POST">
+            <input type="text" placeholder="Code" name="code" value="<%= examf2[i].code %>">
+            <input type="text" placeholder="Nom" name="nom" value="<%= examf2[i].nom %>">
+            <input type="text" placeholder="Capital" name="capital" value="<%= examf2[i].captial %>">
+            <%= examf2[i]._id.toString() %>
+            <a <%= "href=detruire/"+examf2[i]._id.toString() %>>Supprimer</a>
+            <button type="submit">Sauvegarder</button>
+          </form>
+        </li>
+      <% } %>
 		  </table>
 	  </main>
 	  <footer>

@@ -30,5 +30,43 @@ app.get('/',  (req, res) => {
 
     }) 
     
+})
 
+app.get('/formulaire',  (req, res) => {
+   console.log('la route  get / = ' + req.url)
+   res.sendFile(__dirname + "req.url")
+})
+
+
+app.post('/examf2',  (req, res) => {
+  db.collection('examf2').save(req.body, (err, result) => {
+      if (err) return console.log(err)
+      console.log('sauvegarder dans la BD')
+      res.redirect('/')
+    })
+})
+
+
+app.get('/detruire/:id', (req, res) => {
+ var id = req.params.id
+ console.log(id)
+ db.collection('examf2')
+ .findOneAndDelete({"_id": ObjectID(req.params.id)}, (err, resultat) => {
+
+if (err) return console.log(err)
+ res.redirect('/')  // redirige vers la route qui affiche la collection
+ })
+})
+
+
+app.post('/modifier/:id', (req, res) => {
+ var id = req.params.id
+ console.log(id)
+ console.log(req)
+ db.collection('examf2')
+ .findOneAndUpdate({"_id": ObjectID(req.params.id)}, req.body ,(err, resultat) => {
+
+if (err) return console.log(err)
+ res.redirect('/')  // redirige vers la route qui affiche la collection
+ })
 })
