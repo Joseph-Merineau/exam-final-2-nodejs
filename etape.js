@@ -46,6 +46,9 @@ app.get('/question3', (req, res) => {
     // affiche le contenu de la BD
     res.render('index.ejs', {examf2: resultat})
 
+    console.log("relsultat = " + resultat)
+    console.log("cursor = " + cursor)
+
     }) 
 
 })
@@ -79,9 +82,6 @@ app.get('/formulaire',  (req, res) => {
    console.log('la route  get / = ' + req.url)
    res.sendFile(__dirname + "req.url")
 })
-
-
-
 
 
 app.get('/detruire/:id', (req, res) => {
