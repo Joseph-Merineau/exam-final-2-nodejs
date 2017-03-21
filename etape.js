@@ -30,9 +30,39 @@ app.get('/question1', (req, res, next) => {
 
 })
 
-app.get('/question2', (req, res, next) => {
+app.get('/question2', function (req, res) {
 
 	console.log("J'suis juste tanné...")
+
+	/*var cursor = db.collection('examf2').find().toArray(function(err, resultat){
+       if (err) return console.log(err)
+    // renders index.ejs
+    // affiche le contenu de la BD
+    res.render('index.ejs', {examf2: resultat})
+
+    }) */
+
+
+	var data = fs.readFileSync(__dirname + "/public/text/collection_provinces.json", "utf8")
+	res.render('index.ejs', {provinces : JSON.parse(data)});
+
+
+   /* xhr = new XMLHttpRequest();
+xhr.open('POST', "modifier", true);
+data = { 
+ "modif":{
+ "code" : elmLigneDiv[0].innerHTML,
+ "nom" : elmLigneDiv[1].innerHTML,
+ "capital" : elmLigneDiv[2].innerHTML
+ },
+ "_id" : elmLigneDiv[3].innerHTML 
+ }
+
+sData = JSON.stringify(data);
+xhr.setRequestHeader('Content-type', 'application/json');
+xhr.send(sData);
+xhr.addEventListener("readystatechange", traiterRequest, false);*/
+    
 
 })
 
@@ -87,22 +117,3 @@ if (err) return console.log(err)
  res.redirect('/')  // redirige vers la route qui affiche la collection
  })
 })
-
-
-/*function readTextFile(file, callback) {
-    var rawFile = new XMLHttpRequest();
-    rawFile.overrideMimeType("application/json");
-    rawFile.open("GET", file, true);
-    rawFile.onreadystatechange = function() {
-        if (rawFile.readyState === 4 && rawFile.status == "200") {
-            callback(rawFile.responseText);
-        }
-    }
-    rawFile.send(null);
-}
-
-//usage:
-readTextFile("public/text/collection_provinces.json", function(text){
-    var data = JSON.parse(text);
-    console.log(data);
-});*/

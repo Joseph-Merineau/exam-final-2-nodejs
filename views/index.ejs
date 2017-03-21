@@ -21,12 +21,12 @@
   	  	<nav>
   	  </header>
   	  <main>
-		  <table class="tableau">
+		  <table class="tableau examf2" <%= "action=modifier/"+examf2.toString() %>>
         <% for (var i = 0; i < examf2.length; i++) { %>
           <tr>
-            <td><%= examf2[i].code %></td>
-            <td><%= examf2[i].nom %></td>
-            <td><%= examf2[i].capital %></td>
+            <td name="code"><%= examf2[i].code %></td>
+            <td name="nom"><%= examf2[i].nom %></td>
+            <td name="capital"><%= examf2[i].capital %></td>
           </tr>    
         <% } %>
 		  </table>
